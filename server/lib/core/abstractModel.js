@@ -13,7 +13,11 @@ class AbstractModel {
 
 		// cache data at the beginning
 		if (config.fillCacheAtStart)
-			process.nextTick(() => this.fetchData());
+			setTimeout(() => this._initCache());
+	}
+
+	_initCache () {
+		this._fetchDataLock();
 	}
 
 	_handleExpired(key) {
@@ -23,10 +27,12 @@ class AbstractModel {
 	}
 
 	_getCacheData () {
+		console.log('Cache::get', this.cacheKey);
 		return this.cache.get(this.cacheKey);
 	}
 
 	_setCacheData (data) {
+		console.log('Cache::set', this.cacheKey);
 		return this.cache.set(this.cacheKey, data);
 	}
 

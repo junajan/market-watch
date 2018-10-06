@@ -1,10 +1,13 @@
 const _ = require('lodash');
-const request = require('request-promise');
+// const request = require('request-promise');
 const cheerio = require('cheerio');
 
 class Cboe {
 	constructor() {
 		this.FUTURES_URL = 'http://www.cboe.com/delayedquote/';
+		this.NUMERIC_COLUMNS = [
+			'last', 'change', 'high', 'low', 'settlement', 'volume', 'int',
+		];
 	}
 
 	_parseFutureTypes (pageCheerio) {
@@ -42,6 +45,13 @@ class Cboe {
 		return objectized;
 	}
 
+	_numerizeValues(row, start = 0) {
+		for(let i = start; i < row.length; i++)
+			row[i] = parseFloat(row[i]);
+
+		return row;
+	}
+
 	_parseFuture (future, pageCheerio) {
 		const data = [];
 		const table = pageCheerio
@@ -58,15 +68,23 @@ class Cboe {
 			)
 		);
 
-		return this._objectizeArray(data);
+		const numerizedData = data.map((row) => {
+			return this.NUMERIC_COLUMNS.includes(row[0])
+				? this._numerizeValues(row, 1)
+				: row;
+		});
+
+		return this._objectizeArray(numerizedData);
 	}
 
 	async getFutures () {
-		const pageSource = await request.get(this.FUTURES_URL);
-		const pageCheerio = cheerio(pageSource);
-		const futureTypes = this._parseFutureTypes(pageCheerio);
+		// const pageSource = await request.get(this.FUTURES_URL);
+		// const pageCheerio = cheerio(pageSource);
+		// const futureTypes = this._parseFutureTypes(pageCheerio);
+		//
+		// return this._parseFutures(futureTypes, pageCheerio);
 
-		return this._parseFutures(futureTypes, pageCheerio);
+		return require('../../resources/cboe-futures-mock.json');
 	}
 }
 

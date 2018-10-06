@@ -21,7 +21,8 @@ function connectModules (app, modules) {
 		if(_.isFunction(router) && router.prototype.constructor.name !== 'router')
 			router = (new router(app)).getRoutes();
 
-		app.use(prefix, router);
+		if (router)
+			app.use(prefix, router);
 	});
 }
 
