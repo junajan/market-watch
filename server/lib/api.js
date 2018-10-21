@@ -7,7 +7,8 @@ const NodeCache = require('node-cache');
 const loader = require('./core/fileLoader');
 
 function connectModules (app, modules) {
-	modules.forEach((module) => {
+	const routerModules = modules.map((module) => {
+		let routerModule = null;
 		let prefix = '';
 		let router = module.module;
 
@@ -18,12 +19,18 @@ function connectModules (app, modules) {
 			'Deploying "%s" with "%s" prefix', module.name, prefix || '/'
 		);
 
-		if(_.isFunction(router) && router.prototype.constructor.name !== 'router')
-			router = (new router(app)).getRoutes();
+		if(_.isFunction(router) && router.prototype.constructor.name !== 'router') {
+      routerModule = new router(app)
+			router = routerModule.getRoutes();
+		}
 
 		if (router)
 			app.use(prefix, router);
-	});
+
+		return routerModule
+	}).filter(Boolean)
+
+	app.set('modules', routerModules)
 }
 
 module.exports = function AppServer (config) {

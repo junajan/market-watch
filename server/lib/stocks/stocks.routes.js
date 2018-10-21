@@ -1,5 +1,5 @@
 const express = require('express');
-const StocksModel = require('./stocks.model');
+const stocksModelFactory = require('./stocks.model');
 
 class StocksRouter {
 	constructor(app) {
@@ -7,7 +7,7 @@ class StocksRouter {
 		this.config = this.app.get('config');
 		this.cache = this.app.get('cache');
 
-		this.stocks = new StocksModel(this.config, this.cache);
+		this.stocks = stocksModelFactory(this.config, this.cache);
 	}
 
 	getRoutes() {

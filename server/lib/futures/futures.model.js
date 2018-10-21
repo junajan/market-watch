@@ -1,7 +1,7 @@
 const AbstractModel = require('../core/abstractModel');
 const Cboe = require('../clients/cboe');
 
-class FuturesModel extends AbstractModel{
+class FuturesModel extends AbstractModel {
 	constructor(config, cache) {
 		super(config, cache, 'futures:data');
 
@@ -13,4 +13,8 @@ class FuturesModel extends AbstractModel{
 	}
 }
 
-module.exports = FuturesModel;
+let x = null;
+module.exports = (...args) => {
+  if(!x) x = new FuturesModel(...args);
+  return x;
+};

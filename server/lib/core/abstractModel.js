@@ -1,7 +1,14 @@
 const Mutex = require('await-mutex').default;
+const EventEmitter2 = require('eventemitter2').EventEmitter2;
 
-class AbstractModel {
+class AbstractModel extends EventEmitter2 {
 	constructor(config, cache, cacheKey) {
+		super({
+      wildcard: true,
+      delimiter: '::',
+      newListener: false,
+		})
+
 		this.config = config;
 		this.cache = cache;
 		this.cacheKey = cacheKey;
@@ -64,13 +71,13 @@ class AbstractModel {
 	}
 
 	async getTicker (ticker) {
-		const futures = await this._fetchDataLock();
-		return futures[ticker];
+		const data = await this._fetchDataLock();
+		return data[ticker];
 	}
 
 	async getTickers () {
-		const futures = await this._fetchDataLock();
-		return Object.keys(futures);
+		const data = await this._fetchDataLock();
+		return Object.keys(data);
 	}
 }
 

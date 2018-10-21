@@ -3,7 +3,7 @@ const moment = require('moment');
 const AbstractModel = require('../core/abstractModel');
 const Cboe = require('../clients/cboe');
 
-class SpreadsModel extends AbstractModel{
+class SpreadsModel extends AbstractModel {
 	constructor(config, cache) {
 		super(config, cache, 'spreads:data');
 
@@ -21,7 +21,9 @@ class SpreadsModel extends AbstractModel{
 	}
 
 	_refreshCache (data) {
-		this.cache.set(this.cacheKey, this._calculateAllSpreads(data));
+		const calculatedData = this._calculateAllSpreads(data);
+		this.cache.set(this.cacheKey, calculatedData);
+		this.emit('data', calculatedData);
 	}
 
 	_getPercentDiff (first, second) {
@@ -70,10 +72,13 @@ class SpreadsModel extends AbstractModel{
 	async fetchData () {
 		// fetch futures and set tem to cache
 		// recalculate all spreads on cache::set action
-		console.log('FETCH');
 		const data = await this.cboe.getFutures();
 		return this._calculateAllSpreads(data);
 	}
 }
 
-module.exports = SpreadsModel;
+let x = null;
+module.exports = (...args) => {
+	if(!x) x = new SpreadsModel(...args);
+	return x;
+};

@@ -1,5 +1,5 @@
 const express = require('express');
-const SpreadsModel = require('./spreads.model');
+const spreadsModelFactory = require('./spreads.model');
 
 class SpreadsRouter {
 	constructor(app) {
@@ -7,7 +7,7 @@ class SpreadsRouter {
 		this.config = this.app.get('config');
 		this.cache = this.app.get('cache');
 
-		this.spreads = new SpreadsModel(this.config, this.cache);
+		this.spreads = spreadsModelFactory(this.config, this.cache);
 	}
 
 	getRoutes() {

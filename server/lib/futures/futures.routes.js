@@ -1,5 +1,5 @@
 const express = require('express');
-const FuturesModel = require('./futures.model');
+const futuresModelFactory = require('./futures.model');
 
 class FuturesRouter {
 	constructor(app) {
@@ -7,7 +7,7 @@ class FuturesRouter {
 		this.config = this.app.get('config');
 		this.cache = this.app.get('cache');
 
-		this.futures = new FuturesModel(this.config, this.cache);
+		this.futures = futuresModelFactory(this.config, this.cache);
 	}
 
 	getRoutes() {

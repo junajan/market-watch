@@ -3,7 +3,7 @@
   "description": "App for watching several opportunities on the stock market",
   "version": "0.0.1",
   "private": true,
-  "main": "lib/app.js",
+  "main": "lib/api.js",
   "scripts": {
     "start": "node bin/server",
     "start-dev": "NODE_ENV=dev nodemon bin/server",
@@ -20,6 +20,7 @@
     "bluebird": "^3.5.2",
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "~1.4.3",
+    "eventemitter2": "^5.0.1",
     "express": "~4.16.0",
     "fs-extra": "^7.0.0",
     "lodash": "^4.17.11",
@@ -27,7 +28,8 @@
     "morgan": "~1.9.0",
     "node-cache": "^4.2.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",

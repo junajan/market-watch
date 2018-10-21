@@ -1,7 +1,5 @@
 <template>
   <div>
-    widhwihdiwhd
-
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
 
@@ -69,8 +67,6 @@ export default {
       const menuPath = this.removeTrailingSlash(
         [parentRoute, route.path].filter(Boolean).join('/')
       )
-      console.log(currentPath, 'vs', menuPath);
-
       return (currentPath === '/' && menuPath === '/')
         ||
         (menuPath !== '/' && currentPath === menuPath);
