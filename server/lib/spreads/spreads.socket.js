@@ -1,4 +1,3 @@
-const express = require('express');
 const spreadsModelFactory = require('./spreads.model');
 
 class SpreadsSocket {
@@ -12,21 +11,23 @@ class SpreadsSocket {
 	}
 
 	registerHandlers (client) {
-    this._addClientEventHandlers(client)
-    this._addServerEventHandlers(client)
-  }
-
-  _addClientEventHandlers(client) {
-		client.on('spreads::get', async cb => cb(await this.spreads.getAll()))
-		client.on('spreads::get::ticker', async (ticker, cb) => cb(await this.spreads.getTicker(ticker)))
-		client.on('spreads::get::tickers', async cb => cb(await this.spreads.getTickers()))
+		this._addClientEventHandlers(client);
+		this._addServerEventHandlers(client);
 	}
 
-  _addServerEventHandlers(client) {
-    this.spreads.on('data', (data) => {
-      client.emit('spreads', data)
-      Object.entries(data).forEach(([key, rows]) => client.emit(`spreads::${key}`, rows))
-    })
+	_addClientEventHandlers(client) {
+		client.on('spreads::get', async cb => cb(await this.spreads.getAll()));
+		client.on(
+			'spreads::get::ticker', async (ticker, cb) => cb(await this.spreads.getTicker(ticker))
+		);
+		client.on('spreads::get::tickers', async cb => cb(await this.spreads.getTickers()));
+	}
+
+	_addServerEventHandlers(client) {
+		this.spreads.on('data', (data) => {
+			client.emit('spreads', data);
+			Object.entries(data).forEach(([key, rows]) => client.emit(`spreads::${key}`, rows));
+		});
 	}
 }
 

@@ -4,34 +4,34 @@ const SocketIo = require('socket.io');
 const loader = require('./core/fileLoader');
 
 function registerEventHandlers (modules, client) {
-  modules.forEach(module => module.registerHandlers(client))
+	modules.forEach(module => module.registerHandlers(client));
 }
 
 module.exports = function SocketServer (server, app) {
-  const io = SocketIo(server);
+	const io = SocketIo(server);
 
-  /**
+	/**
    * SocketIo routes
    */
-  const socketModules = loader.loadFilesSync('./**/*.socket.js');
-  const modules = socketModules.map(module => new module.module(app, io));
+	const socketModules = loader.loadFilesSync('./**/*.socket.js');
+	const modules = socketModules.map(module => new module.module(app, io));
 
-  io.on('connection', (client) => {
-    console.log("SocketIO::connect", client.id);
+	io.on('connection', (client) => {
+		console.log('SocketIO::connect', client.id);
 
 		client.use((packet, next) => {
-    	const _packet = _.cloneDeep(packet) // don't modify original packet
-    	const eventName = _packet.shift()
-      console.log("SocketIO::%s", eventName, _packet);
-      next();
-    });
+			const _packet = _.cloneDeep(packet); // don't modify original packet
+			const eventName = _packet.shift();
+			console.log('SocketIO::%s', eventName, _packet);
+			next();
+		});
 
-    registerEventHandlers(modules, client)
+		registerEventHandlers(modules, client);
 
-    client.on('disconnect', () => {
-      console.log("SocketIO::disconnect", client.id);
-    });
-  });
+		client.on('disconnect', () => {
+			console.log('SocketIO::disconnect', client.id);
+		});
+	});
 
 	return io;
 };

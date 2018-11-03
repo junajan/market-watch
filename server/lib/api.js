@@ -20,17 +20,17 @@ function connectModules (app, modules) {
 		);
 
 		if(_.isFunction(router) && router.prototype.constructor.name !== 'router') {
-      routerModule = new router(app)
+			routerModule = new router(app);
 			router = routerModule.getRoutes();
 		}
 
 		if (router)
 			app.use(prefix, router);
 
-		return routerModule
-	}).filter(Boolean)
+		return routerModule;
+	}).filter(Boolean);
 
-	app.set('modules', routerModules)
+	app.set('modules', routerModules);
 }
 
 module.exports = function AppServer (config) {

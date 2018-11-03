@@ -1,4 +1,3 @@
-const express = require('express');
 const stocksModelFactory = require('./stocks.model');
 
 class StocksSocket {
@@ -11,8 +10,8 @@ class StocksSocket {
 		this.stocks = stocksModelFactory(this.config, this.cache);
 	}
 
-  registerHandlers () {
-  }
+	registerHandlers () {
+	}
 }
 
 module.exports = StocksSocket;

@@ -48,13 +48,13 @@ class SpreadsModel extends AbstractModel {
 				diff: _.round(secondPrice - firstPrice, 4),
 				diffPercent: this._getPercentDiff(secondPrice, firstPrice),
 			}
-			: null
+			: null;
 	}
 
-  _calculateDiffChange (firstLeg, secondLeg) {
+	_calculateDiffChange (firstLeg, secondLeg) {
 		return firstLeg.last + secondLeg.last
 			? _.round(firstLeg.change - secondLeg.change, 3)
-			: null
+			: null;
 	}
 
 	_calculateSpreads (futures, ticker) {
@@ -64,7 +64,7 @@ class SpreadsModel extends AbstractModel {
 		// do only monthly spreads
 		futures = futures.filter((future => isNaN(future.symbol[0])));
 
-    const calculatedAt = +new Date()
+		const calculatedAt = +new Date();
 		for (let i = 1; i < futures.length; i++) {
 			const firstLeg = futures[i - 1];
 			const secondLeg = futures[i];
@@ -79,7 +79,7 @@ class SpreadsModel extends AbstractModel {
 				volume: Math.min(firstLeg.volume, secondLeg.volume),
 				calculatedAt,
 			});
-    }
+		}
 		return spreads;
 	}
 

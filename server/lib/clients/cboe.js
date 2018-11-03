@@ -6,8 +6,8 @@ const request = require('request-promise');
 class Cboe {
 	constructor() {
 		this.FUTURES_URL = 'http://www.cboe.com/delayedquote/';
-    this.DATE_FORMAT = 'MM/DD/YYYY';
-    this.NUMERIC_COLUMNS = [
+		this.DATE_FORMAT = 'MM/DD/YYYY';
+		this.NUMERIC_COLUMNS = [
 			'last', 'change', 'high', 'low', 'settlement', 'volume', 'int',
 		];
 	}
@@ -54,17 +54,17 @@ class Cboe {
 		return row;
 	}
 
-  _getDaysToExpiration (date) {
-    return moment(date, this.DATE_FORMAT).diff(moment(), 'days');
-  }
+	_getDaysToExpiration (date) {
+		return moment(date, this.DATE_FORMAT).diff(moment(), 'days');
+	}
 
-  _enrichWithCalculatedFields (list) {
+	_enrichWithCalculatedFields (list) {
 		return list.map(row => ({
 			...row,
 			loadedAt: +new Date(),
 			isWeekly: /^[0-9]$/.test(row.symbol[0]),
 			daysToExpiration: this._getDaysToExpiration(row.expiration)
-		}))
+		}));
 	}
 
 	_parseFuture (future, pageCheerio) {

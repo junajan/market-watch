@@ -4,10 +4,10 @@ const EventEmitter2 = require('eventemitter2').EventEmitter2;
 class AbstractModel extends EventEmitter2 {
 	constructor(config, cache, cacheKey) {
 		super({
-      wildcard: true,
-      delimiter: '::',
-      newListener: false,
-		})
+			wildcard: true,
+			delimiter: '::',
+			newListener: false,
+		});
 
 		this.config = config;
 		this.cache = cache;

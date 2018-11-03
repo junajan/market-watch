@@ -15,6 +15,6 @@ class FuturesModel extends AbstractModel {
 
 let x = null;
 module.exports = (...args) => {
-  if(!x) x = new FuturesModel(...args);
-  return x;
+	if(!x) x = new FuturesModel(...args);
+	return x;
 };

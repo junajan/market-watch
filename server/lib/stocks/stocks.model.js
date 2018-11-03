@@ -23,6 +23,6 @@ class StocksModel {
 
 let x = null;
 module.exports = (...args) => {
-  if(!x) x = new StocksModel(...args);
-  return x;
+	if(!x) x = new StocksModel(...args);
+	return x;
 };
