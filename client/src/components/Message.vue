@@ -6,22 +6,22 @@
 </template>
 
 <script>
-  export default {
-    name: 'Message',
-    props: {
-      'type': {
-        type: String,
-        default: 'warning'
-      },
-      'header': String,
-      'message': String,
+export default {
+  name: 'Message',
+  props: {
+    type: {
+      type: String,
+      default: 'warning',
     },
-    data() {
-      return {
-        type: 'warning',
-        header: '',
-        message: '',
-      };
-    },
-  };
+    header: String,
+    message: String,
+  },
+  data() {
+    return {
+      type: 'warning',
+      header: '',
+      message: '',
+    };
+  },
+};
 </script>

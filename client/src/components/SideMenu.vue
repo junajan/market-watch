@@ -53,20 +53,20 @@ export default {
   },
   methods: {
     removeTrailingSlash(str) {
-      return str.replace(/\/$/, "");
+      return str.replace(/\/$/, '');
     },
     isMenuItemActive(route) {
-      const currentPath = this.$route.path
-      const menuPath = route.path
+      const currentPath = this.$route.path;
+      const menuPath = route.path;
       return (currentPath === '/' && menuPath === '/')
         ||
         (menuPath !== '/' && currentPath.includes(menuPath));
     },
     isChildItemActive(route, parentRoute = '') {
-      const currentPath = this.removeTrailingSlash(this.$route.path)
+      const currentPath = this.removeTrailingSlash(this.$route.path);
       const menuPath = this.removeTrailingSlash(
-        [parentRoute, route.path].filter(Boolean).join('/')
-      )
+        [parentRoute, route.path].filter(Boolean).join('/'),
+      );
       return (currentPath === '/' && menuPath === '/')
         ||
         (menuPath !== '/' && currentPath === menuPath);

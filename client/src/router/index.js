@@ -18,8 +18,8 @@ const routes = [
     meta: {
       menu: true,
       icon: 'dashboard',
-      title: 'Home - Volatility trading',
-      subtitle: 'Tools for volatility trading',
+      title: 'Dashboard',
+      subtitle: 'Quick overview',
     },
   },
   {
