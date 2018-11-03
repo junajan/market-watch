@@ -41,6 +41,22 @@ class SpreadsModel extends AbstractModel {
 		);
 	}
 
+	_calculateDiffPrice (firstPrice, secondPrice) {
+		return firstPrice + secondPrice
+			? {
+				isContango: firstPrice < secondPrice,
+				diff: _.round(secondPrice - firstPrice, 4),
+				diffPercent: this._getPercentDiff(secondPrice, firstPrice),
+			}
+			: null
+	}
+
+  _calculateDiffChange (firstLeg, secondLeg) {
+		return firstLeg.last + secondLeg.last
+			? _.round(firstLeg.change - secondLeg.change, 3)
+			: null
+	}
+
 	_calculateSpreads (futures, ticker) {
 		const spreads = [];
 		console.log('Calculate spreads for %s', ticker);
@@ -48,6 +64,7 @@ class SpreadsModel extends AbstractModel {
 		// do only monthly spreads
 		futures = futures.filter((future => isNaN(future.symbol[0])));
 
+    const calculatedAt = +new Date()
 		for (let i = 1; i < futures.length; i++) {
 			const firstLeg = futures[i - 1];
 			const secondLeg = futures[i];
@@ -55,13 +72,14 @@ class SpreadsModel extends AbstractModel {
 			spreads.push({
 				first: firstLeg,
 				second: secondLeg,
-				isContango: secondLeg.last > firstLeg.last,
-				diff: _.round(secondLeg.last - firstLeg.last, 4),
-				diffPercent: this._getPercentDiff(firstLeg.last, secondLeg.last),
-				daysToFirstExpiration: this._getDaysToExpiration(firstLeg.expiration),
-				daysToSecondExpiration: this._getDaysToExpiration(firstLeg.expiration),
+				last: this._calculateDiffPrice(firstLeg.last, secondLeg.last),
+				change: this._calculateDiffChange(firstLeg, secondLeg),
+				high: this._calculateDiffPrice(firstLeg.high, secondLeg.high),
+				low: this._calculateDiffPrice(firstLeg.low, secondLeg.low),
+				volume: Math.min(firstLeg.volume, secondLeg.volume),
+				calculatedAt,
 			});
-		}
+    }
 		return spreads;
 	}
 

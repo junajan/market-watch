@@ -6,6 +6,7 @@
   "main": "lib/api.js",
   "scripts": {
     "start": "node bin/server",
+    "dev": "npm run start-dev",
     "start-dev": "NODE_ENV=dev nodemon bin/server",
     "watch-lint": "nodemon --exec 'npm run lint'",
     "lint": "./node_modules/.bin/eslint ."
