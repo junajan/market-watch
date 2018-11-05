@@ -54,3 +54,4 @@ jspm_packages/
 # custom
 tmp/
 *.env.js
+config/*.env.json
