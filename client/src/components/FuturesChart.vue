@@ -40,8 +40,19 @@ export default {
         xValues: data.map(row =>
           this.$options.filters.moment(row.expiration, 'DD. MMM')
         ),
-        yLast: data.map(row => {
+        yLast: data.map((row, index) => {
+          let prev = index > 0 ? data[index - 1] : null
+          let next = index < data.length ? data[index + 1] : null
+
+          if (prev)
+            prev = Number(Number(row.last - prev.last).toFixed(2))
+
+          if (next)
+            next = Number(Number(next.last - row.last).toFixed(2))
+
           const info = {
+            diffNext: next,
+            diffPrev: prev,
             change: row.change,
             daysToExpiration: row.daysToExpiration,
             expiration: this.$options.filters.moment(row.expiration, 'DD.MM.YYYY'),
@@ -110,12 +121,12 @@ export default {
               : this.point.info.change
             change = (change ? `(${change})` : '')
 
-
             return `
               Expiration: ${this.point.info.expiration} (${this.point.info.daysToExpiration} days) <br />
               <b>Last Price: ${this.y} USD ${change}</b><br />
-              <b>Volume: ${this.point.info.volume}</b>
-            `
+              <b>Volume: ${this.point.info.volume}</b><br />`
+              + (this.point.info.diffPrev ? `<b>Diff prev: ${this.point.info.diffPrev}</b><br />` : '')
+              + (this.point.info.diffNext ? `<b>Diff next: ${this.point.info.diffNext}</b><br />` : '')
           }
         },
         series: [{
