@@ -133,7 +133,7 @@ export default {
     return {
       vixSpreads: [],
       vixFutures: [],
-      weeklyOn: true,
+      weeklyOn: false,
     };
   },
   methods: {
