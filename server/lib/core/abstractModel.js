@@ -40,7 +40,9 @@ class AbstractModel extends EventEmitter2 {
 
 	_setCacheData (data) {
 		console.log('Cache::set', this.cacheKey);
-		return this.cache.set(this.cacheKey, data);
+
+    process.nextTick(() => this.emit('data', data))
+    return this.cache.set(this.cacheKey, data);
 	}
 
 	async _fetchDataLock () {

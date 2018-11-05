@@ -22,17 +22,12 @@ class SpreadsModel extends AbstractModel {
 
 	_refreshCache (data) {
 		const calculatedData = this._calculateAllSpreads(data);
-		this.cache.set(this.cacheKey, calculatedData);
-		this.emit('data', calculatedData);
+		this._setCacheData(calculatedData)
 	}
 
 	_getPercentDiff (first, second) {
 		const diff = second - first;
 		return _.round(diff / first * 100, 2);
-	}
-
-	_getDaysToExpiration (date) {
-		return moment(date, this.DATE_FORMAT).diff(moment(), 'days');
 	}
 
 	_calculateAllSpreads (data) {
