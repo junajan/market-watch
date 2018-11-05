@@ -81,6 +81,7 @@ export default {
         : this.chart = this.createChart(chartData)
     },
     redrawChart(chart, data) {
+      chart.xAxis[0].update({categories: data.xValues});
       chart.series[0].setData(data.yLast,true);
       chart.series[1].setData(data.yPrev,true);
     },
