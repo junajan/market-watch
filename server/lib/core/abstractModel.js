@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 const Mutex = require('await-mutex').default;
 const EventEmitter2 = require('eventemitter2').EventEmitter2;
 
@@ -53,12 +54,19 @@ class AbstractModel extends EventEmitter2 {
 			const unlock = await this.mutex.lock();
 
 			if (isLocker) {
-				futures = await this.fetchData();
-				this._setCacheData(futures);
-			} else
+				try {
+					futures = await this.fetchData();
+					this._setCacheData(futures);
+          unlock()
+        } catch (err) {
+					await Promise.delay(2000)
+          unlock()
+          futures = await this._fetchDataLock()
+				}
+			} else {
 				futures = this._getCacheData();
-
-			unlock();
+      	unlock();
+			}
 		}
 
 		return futures;
