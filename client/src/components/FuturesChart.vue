@@ -1,5 +1,6 @@
 <template>
     <div class="chart" v-bind:id="'futures-chart-'+_uid">
+        Loading ...
     </div>
 </template>
 
@@ -17,27 +18,74 @@ export default {
       type: String,
       default: '',
     },
+    weeklyOn: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
+      chart: null
     };
   },
   methods: {
-    renderChart(data) {
-      const loadedAt = this.$options.filters.moment(data[0].loadedAt, 'H:mm:ss');
+    renderData(data) {
+      if (!data || !data.length) { return; }
 
-      Highcharts.chart(`futures-chart-${this._uid}`, {
+      if (this.weeklyOn === false)
+        data = data.filter(row => !row.isWeekly)
+
+      const chartData = {
+        loadedAt: this.$options.filters.moment(data[0].loadedAt, 'H:mm:ss'),
+        xValues: data.map(row =>
+          this.$options.filters.moment(row.expiration, 'DD. MMM')
+        ),
+        yLast: data.map(row => {
+          const info = {
+            change: row.change,
+            daysToExpiration: row.daysToExpiration,
+            expiration: this.$options.filters.moment(row.expiration, 'DD.MM.YYYY'),
+            volume: row.volume,
+          }
+
+          return {
+            info,
+            y: row.last,
+            color: row.isWeekly ? 'green' : null
+          }
+        }),
+        yPrev: data.map(row => {
+          return {
+            y: Number(Number(row.last - row.change).toFixed(2)),
+            color: row.isWeekly ? 'green' : null
+          }
+        })
+      };
+
+//      TODO debugging - remove
+//      this.chart = this.createChart(chartData)
+
+      return this.chart
+        ? this.redrawChart(this.chart, chartData)
+        : this.chart = this.createChart(chartData)
+    },
+    redrawChart(chart, data) {
+      chart.series[0].setData(data.yLast,true);
+      chart.series[1].setData(data.yPrev,true);
+    },
+    createChart(data) {
+      return Highcharts.chart(`futures-chart-${this._uid}`, {
         chart: {
-          type: 'line',
+          type: 'spline',
         },
         title: {
           text: `${this.name} Futures term structure`,
         },
         subtitle: {
-          text: `Data loaded at ${loadedAt}`,
+          text: `Data loaded at ${data.loadedAt}`,
         },
         xAxis: {
-          categories: ['Jan', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          categories: data.xValues,
         },
         yAxis: {
           title: {
@@ -45,31 +93,60 @@ export default {
           },
         },
         plotOptions: {
-          line: {
+          spline: {
             dataLabels: {
               enabled: true,
-            },
-            enableMouseTracking: false,
+            }
           },
         },
+        tooltip: {
+          useHtml: true,
+          formatter: function() {
+            if (!this.point.info)
+              return `<b>Last Price: ${this.y} USD</b><br /> Expiration: ${this.x}`
+
+            let change = this.point.info.change > 0
+              ? `+${this.point.info.change}`
+              : this.point.info.change
+            change = (change ? `(${change})` : '')
+
+
+            return `
+              Expiration: ${this.point.info.expiration} (${this.point.info.daysToExpiration} days) <br />
+              <b>Last Price: ${this.y} USD ${change}</b><br />
+              <b>Volume: ${this.point.info.volume}</b>
+            `
+          }
+        },
         series: [{
-          data: [7.0, 10.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+          name: `Last price`,
+          data: data.yLast,
+        }, {
+          marker: {
+            symbol: 'bullet'
+          },
+          visible: false,
+          name: `Prev price`,
+          data: data.yPrev,
         }],
       });
-    },
+    }
   },
   watch: {
     data(data) {
-      if (!data.length) { return; }
-
       this.$nextTick(function () {
-        this.renderChart(data);
+        this.renderData(data);
+      });
+    },
+    weeklyOn() {
+      this.$nextTick(function () {
+        this.renderData(this.data);
       });
     },
   },
   created() {
     this.$nextTick(function () {
-      this.renderChart(this.data);
+      this.renderData(this.data);
     });
   },
 };

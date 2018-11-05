@@ -22,7 +22,7 @@
                 </div>
                 <div class="tab-content" v-else>
                     <div class="tab-pane active" id="vxspreads-chart">
-                        <FuturesChart v-if="vixFutures" name="VIX" v-bind:data="vixFutures"></FuturesChart>
+                        <FuturesChart v-if="vixFutures" name="VIX" v-bind:data="vixFutures" v-bind:weekly-on="weeklyOn" ></FuturesChart>
                     </div>
                     <div class="tab-pane" id="vxspreads-futures">
                         <table class="table-responsive table table-striped">
@@ -37,6 +37,7 @@
                                 <th>Settlement</th>
                                 <th>Expiration</th>
                                 <th>Type</th>
+                                <th>Loaded At</th>
                             </tr>
                             <tr v-for="(row, index) in vixFutures" v-if="!row.isWeekly || weeklyOn">
                                 <td class="text-bold">{{ index + 1 }}.</td>
@@ -61,6 +62,9 @@
                                 </td>
                                 <td :class="{ 'text-bold': !row.isWeekly }">
                                     {{ row.isWeekly ? 'weekly': 'monthly' }}
+                                </td>
+                                <td>
+                                    {{ row.loadedAt | moment('H:mm:ss') }}
                                 </td>
                             </tr>
                             </tbody>
@@ -138,7 +142,6 @@ export default {
     },
     onFuturesData(data) {
       this.vixFutures = data || null;
-      console.log('FUTURES:', this.vixFutures);
     },
   },
   sockets: {
