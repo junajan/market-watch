@@ -1,2 +1,2 @@
-# sojka
-Market data monitoring tool 
+# MarketWatch
+Market data monitoring tool. 
