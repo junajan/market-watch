@@ -40,7 +40,6 @@
 export default {
   name: 'SideMenu',
   data() {
-    console.log(this.$router.options.routes);
     return {
       routes: this.$router.options.routes,
     };

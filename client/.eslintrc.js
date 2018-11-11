@@ -30,6 +30,12 @@ module.exports = {
       js: 'never',
       vue: 'never'
     }],
+    
+    'no-underscore-dangle': [2, {
+      'allow': ['_uid'],
+      'allowAfterThis': true
+    }],
+
     // disallow reassignment of function parameters
     // disallow parameter object manipulation except for specific exclusions
     'no-param-reassign': 0,

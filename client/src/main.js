@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import App from './App';
-import router from './router';
 import VueSocketio from 'vue-socket.io';
 import VueMoment from 'vue-moment';
+import App from './App';
+import router from './router';
 import config from './config/config.json';
 
 Vue.use(VueSocketio, config.apiUrl);

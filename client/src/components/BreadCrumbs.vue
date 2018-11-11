@@ -48,9 +48,7 @@ export default {
       const crumbs = route.matched
         .map(({ path, name }) => ({ path, name }))
         .filter((crumb) => {
-          console.log(crumb);
           const path = _.trim(crumb.path, '/');
-          console.log(path, lastPath);
           const remove = path !== lastPath;
           lastPath = path;
           return remove;

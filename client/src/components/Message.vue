@@ -18,9 +18,6 @@ export default {
   },
   data() {
     return {
-      type: 'warning',
-      header: '',
-      message: '',
     };
   },
 };
