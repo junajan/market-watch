@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const moment = require('moment');
 const AbstractModel = require('../core/abstractModel');
 const Cboe = require('../clients/cboe');
 
@@ -22,7 +21,7 @@ class SpreadsModel extends AbstractModel {
 
 	_refreshCache (data) {
 		const calculatedData = this._calculateAllSpreads(data);
-		this._setCacheData(calculatedData)
+		this._setCacheData(calculatedData);
 	}
 
 	_getPercentDiff (first, second) {

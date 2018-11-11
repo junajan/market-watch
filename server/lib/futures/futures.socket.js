@@ -25,7 +25,7 @@ class FuturesSocket {
 
 	_addServerEventHandlers(client) {
 		this.futures.on('data', (data) => {
-      client.emit('futures', data);
+			client.emit('futures', data);
 			Object.entries(data).forEach(([key, rows]) => client.emit(`futures::${key}`, rows));
 		});
 	}

@@ -42,8 +42,8 @@ class AbstractModel extends EventEmitter2 {
 	_setCacheData (data) {
 		console.log('Cache::set', this.cacheKey);
 
-    process.nextTick(() => this.emit('data', data))
-    return this.cache.set(this.cacheKey, data);
+		process.nextTick(() => this.emit('data', data));
+		return this.cache.set(this.cacheKey, data);
 	}
 
 	async _fetchDataLock () {
@@ -57,15 +57,15 @@ class AbstractModel extends EventEmitter2 {
 				try {
 					futures = await this.fetchData();
 					this._setCacheData(futures);
-          unlock()
-        } catch (err) {
-					await Promise.delay(2000)
-          unlock()
-          futures = await this._fetchDataLock()
+					unlock();
+				} catch (err) {
+					await Promise.delay(2000);
+					unlock();
+					futures = await this._fetchDataLock();
 				}
 			} else {
 				futures = this._getCacheData();
-      	unlock();
+				unlock();
 			}
 		}
 
