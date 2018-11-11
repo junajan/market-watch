@@ -5,6 +5,8 @@ import App from './App';
 import router from './router';
 import config from './config/config.json';
 
+config.apiUrl = `${window.location.protocol}//${window.location.hostname}:${config.apiProtocol}`
+
 Vue.use(VueSocketio, config.apiUrl);
 Vue.use(VueMoment);
 
