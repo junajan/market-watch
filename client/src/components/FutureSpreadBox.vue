@@ -13,7 +13,7 @@
                     <label>
                         <input
                             type="checkbox"
-                            checked="weeklyOn"
+                            :checked="weeklyOn"
                             v-on:click="weeklyOn = !weeklyOn" />
                         Turn on weekly
                     </label>
@@ -114,6 +114,6 @@ export default {
         padding: 10px
     }
     .nav-tabs-custom {
-        height: 370px;
+        min-height: 370px;
     }
 </style>
