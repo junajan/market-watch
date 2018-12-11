@@ -1,0 +1,6 @@
+{
+  "port": 3030,
+  "cacheTTL": 300,
+  "fillCacheAtStart": true,
+  "stockWatchlist": []
+}
