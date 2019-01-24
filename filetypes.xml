@@ -28,6 +28,7 @@
       <mapping pattern=".mversionrc" type="PLAIN_TEXT" />
       <mapping pattern="ib-history.js" type="PLAIN_TEXT" />
       <mapping pattern="youtubeToMp3" type="PLAIN_TEXT" />
+      <mapping pattern=".env.development.local" type="PLAIN_TEXT" />
       <mapping pattern="sources" type="PLAIN_TEXT" />
       <mapping pattern="lastSyncDate" type="PLAIN_TEXT" />
       <mapping pattern=".gitkeep" type="PLAIN_TEXT" />
