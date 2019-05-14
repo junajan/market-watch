@@ -17,7 +17,6 @@
       <mapping pattern=".gitattributes" type="PLAIN_TEXT" />
       <mapping pattern="order-data-migration-channels" type="PLAIN_TEXT" />
       <mapping pattern="todo" type="PLAIN_TEXT" />
-      <mapping pattern="indicators" type="PLAIN_TEXT" />
       <mapping pattern="retailers-import" type="PLAIN_TEXT" />
       <mapping pattern="tmp" type="PLAIN_TEXT" />
       <mapping pattern=".nvmrc" type="PLAIN_TEXT" />
@@ -27,12 +26,14 @@
       <mapping pattern="ForumWall" type="PLAIN_TEXT" />
       <mapping pattern=".mversionrc" type="PLAIN_TEXT" />
       <mapping pattern="ib-history.js" type="PLAIN_TEXT" />
-      <mapping pattern="youtubeToMp3" type="PLAIN_TEXT" />
+      <mapping pattern="indicators" type="PLAIN_TEXT" />
+      <mapping pattern="nsc-import" type="PLAIN_TEXT" />
       <mapping pattern=".env.development.local" type="PLAIN_TEXT" />
+      <mapping pattern="run" type="PLAIN_TEXT" />
       <mapping pattern="sources" type="PLAIN_TEXT" />
       <mapping pattern="lastSyncDate" type="PLAIN_TEXT" />
       <mapping pattern=".gitkeep" type="PLAIN_TEXT" />
-      <mapping pattern="run" type="PLAIN_TEXT" />
+      <mapping pattern="youtubeToMp3" type="PLAIN_TEXT" />
       <mapping pattern="roadmap" type="PLAIN_TEXT" />
       <mapping pattern=".editorconfig" type="PLAIN_TEXT" />
       <mapping ext="csv" type="PLAIN_TEXT" />
