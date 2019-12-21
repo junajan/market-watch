@@ -1,51 +1,52 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
-      <mapping pattern="www" type="Bash" />
-      <mapping pattern="on-demand-script" type="Bash" />
-      <mapping pattern="deliveries-export" type="Bash" />
+      <removed_mapping pattern=".editorconfig" type="EditorConfig" />
       <mapping ext="json-sample" type="JSON" />
       <mapping ext="json-dist" type="JSON" />
+      <mapping pattern="delete-inventories" type="JavaScript" />
+      <mapping pattern="delete-invalid-images" type="JavaScript" />
       <mapping pattern="zeg-retailer-delivery-status-sync" type="JavaScript" />
       <mapping pattern="publish-products" type="JavaScript" />
-      <mapping pattern="delete-invalid-images" type="JavaScript" />
-      <mapping pattern="delete-inventories" type="JavaScript" />
       <mapping ext="php" type="PHP" />
-      <mapping pattern="dependencyCheck" type="PLAIN_TEXT" />
-      <mapping pattern="compile" type="PLAIN_TEXT" />
-      <mapping pattern="=2" type="PLAIN_TEXT" />
-      <mapping pattern=".gitattributes" type="PLAIN_TEXT" />
-      <mapping pattern="order-data-migration-channels" type="PLAIN_TEXT" />
-      <mapping pattern="todo" type="PLAIN_TEXT" />
-      <mapping pattern="retailers-import" type="PLAIN_TEXT" />
-      <mapping pattern="tmp" type="PLAIN_TEXT" />
-      <mapping pattern=".nvmrc" type="PLAIN_TEXT" />
-      <mapping pattern="example" type="PLAIN_TEXT" />
-      <mapping pattern=".mversion" type="PLAIN_TEXT" />
+      <mapping pattern="sources" type="PLAIN_TEXT" />
       <mapping pattern="product-import" type="PLAIN_TEXT" />
-      <mapping pattern="ForumWall" type="PLAIN_TEXT" />
       <mapping pattern=".mversionrc" type="PLAIN_TEXT" />
-      <mapping pattern="ib-history.js" type="PLAIN_TEXT" />
+      <mapping pattern="retailers-import" type="PLAIN_TEXT" />
+      <mapping pattern="example" type="PLAIN_TEXT" />
       <mapping pattern="indicators" type="PLAIN_TEXT" />
+      <mapping pattern="lastSyncDate" type="PLAIN_TEXT" />
+      <mapping pattern=".editorconfig" type="PLAIN_TEXT" />
+      <mapping pattern=".gitattributes" type="PLAIN_TEXT" />
+      <mapping pattern=".nvmrc" type="PLAIN_TEXT" />
+      <mapping pattern="ForumWall" type="PLAIN_TEXT" />
+      <mapping pattern="compile" type="PLAIN_TEXT" />
+      <mapping pattern="youtubeToMp3" type="PLAIN_TEXT" />
+      <mapping pattern="order-data-migration-channels" type="PLAIN_TEXT" />
+      <mapping pattern="run" type="PLAIN_TEXT" />
+      <mapping pattern="roadmap" type="PLAIN_TEXT" />
+      <mapping pattern="dependencyCheck" type="PLAIN_TEXT" />
+      <mapping pattern=".mversion" type="PLAIN_TEXT" />
+      <mapping pattern="tmp" type="PLAIN_TEXT" />
+      <mapping pattern=".gitkeep" type="PLAIN_TEXT" />
+      <mapping pattern="ib-history.js" type="PLAIN_TEXT" />
+      <mapping pattern="todo" type="PLAIN_TEXT" />
       <mapping pattern="nsc-import" type="PLAIN_TEXT" />
       <mapping pattern=".env.development.local" type="PLAIN_TEXT" />
-      <mapping pattern="run" type="PLAIN_TEXT" />
-      <mapping pattern="sources" type="PLAIN_TEXT" />
-      <mapping pattern="lastSyncDate" type="PLAIN_TEXT" />
-      <mapping pattern=".gitkeep" type="PLAIN_TEXT" />
-      <mapping pattern="youtubeToMp3" type="PLAIN_TEXT" />
-      <mapping pattern="roadmap" type="PLAIN_TEXT" />
-      <mapping pattern=".editorconfig" type="PLAIN_TEXT" />
-      <mapping ext="csv" type="PLAIN_TEXT" />
+      <mapping pattern="=2" type="PLAIN_TEXT" />
       <mapping ext="json-list" type="PLAIN_TEXT" />
       <mapping ext="dist" type="PLAIN_TEXT" />
       <mapping ext="csb" type="PLAIN_TEXT" />
-      <mapping ext="properties" type="PLAIN_TEXT" />
-      <mapping ext="srt" type="PLAIN_TEXT" />
       <mapping ext="list" type="PLAIN_TEXT" />
+      <mapping ext="srt" type="PLAIN_TEXT" />
       <mapping ext="test" type="PLAIN_TEXT" />
-      <mapping ext="case" type="PLAIN_TEXT" />
       <mapping ext="env" type="PLAIN_TEXT" />
+      <mapping ext="properties" type="PLAIN_TEXT" />
+      <mapping ext="case" type="PLAIN_TEXT" />
+      <removed_mapping pattern=".editorconfig" type="EditorConfig" />
+      <mapping pattern="deliveries-export" type="Bash" />
+      <mapping pattern="on-demand-script" type="Bash" />
+      <mapping pattern="www" type="Bash" />
     </extensionMap>
   </component>
 </application>
