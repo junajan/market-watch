@@ -1,7 +1,6 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
-      <removed_mapping pattern=".editorconfig" type="EditorConfig" />
       <mapping ext="json-sample" type="JSON" />
       <mapping ext="json-dist" type="JSON" />
       <mapping pattern="delete-inventories" type="JavaScript" />
@@ -16,7 +15,6 @@
       <mapping pattern="example" type="PLAIN_TEXT" />
       <mapping pattern="indicators" type="PLAIN_TEXT" />
       <mapping pattern="lastSyncDate" type="PLAIN_TEXT" />
-      <mapping pattern=".editorconfig" type="PLAIN_TEXT" />
       <mapping pattern=".gitattributes" type="PLAIN_TEXT" />
       <mapping pattern=".nvmrc" type="PLAIN_TEXT" />
       <mapping pattern="ForumWall" type="PLAIN_TEXT" />
@@ -43,7 +41,6 @@
       <mapping ext="env" type="PLAIN_TEXT" />
       <mapping ext="properties" type="PLAIN_TEXT" />
       <mapping ext="case" type="PLAIN_TEXT" />
-      <removed_mapping pattern=".editorconfig" type="EditorConfig" />
       <mapping pattern="deliveries-export" type="Bash" />
       <mapping pattern="on-demand-script" type="Bash" />
       <mapping pattern="www" type="Bash" />
