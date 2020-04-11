@@ -32,6 +32,7 @@
       <mapping pattern="nsc-import" type="PLAIN_TEXT" />
       <mapping pattern=".env.development.local" type="PLAIN_TEXT" />
       <mapping pattern="=2" type="PLAIN_TEXT" />
+      <mapping ext="eot" type="PLAIN_TEXT" />
       <mapping ext="json-list" type="PLAIN_TEXT" />
       <mapping ext="csb" type="PLAIN_TEXT" />
       <mapping ext="list" type="PLAIN_TEXT" />
