@@ -33,11 +33,11 @@
       <mapping pattern=".env.development.local" type="PLAIN_TEXT" />
       <mapping pattern="youtubeToMp3" type="PLAIN_TEXT" />
       <mapping ext="json-list" type="PLAIN_TEXT" />
+      <mapping ext="dist" type="PLAIN_TEXT" />
       <mapping ext="csb" type="PLAIN_TEXT" />
       <mapping ext="mo" type="PLAIN_TEXT" />
       <mapping ext="list" type="PLAIN_TEXT" />
       <mapping ext="srt" type="PLAIN_TEXT" />
-      <mapping ext="dist" type="PLAIN_TEXT" />
       <mapping ext="eot" type="PLAIN_TEXT" />
       <mapping ext="test" type="PLAIN_TEXT" />
       <mapping ext="env" type="PLAIN_TEXT" />
