@@ -15,7 +15,7 @@
   "dependencies": {
     "admin-lte": "^2.4.8",
     "bluebird": "^3.5.1",
-    "highcharts": "^6.1.1",
+    "highcharts": "^9.0.0",
     "highcharts-vue": "^1.0.4",
     "lodash": "^4.17.10",
     "socket.io-client": "^2.1.1",
