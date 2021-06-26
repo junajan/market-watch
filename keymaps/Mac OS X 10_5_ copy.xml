@@ -9,6 +9,10 @@
     <keyboard-shortcut first-keystroke="meta u_with_acute" />
     <keyboard-shortcut first-keystroke="ctrl u_with_acute" />
   </action>
+  <action id="DBNavigator.Actions.Execute">
+    <keyboard-shortcut first-keystroke="meta enter" />
+    <keyboard-shortcut first-keystroke="ctrl meta enter" />
+  </action>
   <action id="EditorSortLines">
     <keyboard-shortcut first-keystroke="ctrl meta l" />
   </action>
