@@ -2,6 +2,7 @@
   <component name="ParameterNameHintsSettings">
     <disabledLanguages>
       <language id="JavaScript" />
+      <language id="Vue" />
     </disabledLanguages>
   </component>
 </application>
